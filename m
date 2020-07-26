@@ -2,26 +2,26 @@ Return-Path: <linux-decnet-user-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-decnet-user@lfdr.de
 Delivered-To: lists+linux-decnet-user@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8FDA22D98D
-	for <lists+linux-decnet-user@lfdr.de>; Sat, 25 Jul 2020 21:19:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1524722DD3F
+	for <lists+linux-decnet-user@lfdr.de>; Sun, 26 Jul 2020 10:30:36 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-decnet-user-bounces@lists.sourceforge.net>)
-	id 1jzPh7-0004IR-2a; Sat, 25 Jul 2020 19:18:53 +0000
+	id 1jzc39-0006zd-Ge; Sun, 26 Jul 2020 08:30:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
  (envelope-from <davem@davemloft.net>)
- id 1jz6Py-00060P-6r; Fri, 24 Jul 2020 22:43:54 +0000
+ id 1jzbN4-00061c-Bg; Sun, 26 Jul 2020 07:46:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Mime-Version
  :References:In-Reply-To:From:Subject:Cc:To:Message-Id:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Oj4YRdJi8KtdeHj9KfkmKfCxKdhH+btJUkqFKWf4b4s=; b=EL3rLnNgpplVlZwNM6XSO2sxJR
- 0QYCeY/pKFV365CNqxYfk5ulRjxO1qdewaGsV/JiQ/0nG7v+u/7Bj/REt257Q074xBNtTqSq3w8+Z
- bbPfDbGAq0/SJtJFQSDZf2yO1SI1/xH+RtqinkZuBAZFwolMTwWkK6nhmEaP2VX93MzM=;
+ bh=/OYE8Kh5kREshesgyJBW+FlyuEi8kJEkZ/cCPrfQ51Y=; b=fmCTT06yEa9/hPGzp/jI6orNM5
+ sCXB39IZ/8rHl6Utdsu5IHo0xJCRjl9kMbjehZOeRIPwEvKb6mECK2jZnJZiC+P7F1hSmbWifBEik
+ IvWGknRnUe3VJxOhcEsRlBF83w8+hcqe4DcRzMrhmlfaQm4sm2vDwlRw21S6H8SxF3Gg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:Mime-Version:References:
@@ -29,30 +29,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Oj4YRdJi8KtdeHj9KfkmKfCxKdhH+btJUkqFKWf4b4s=; b=S0Kx63FNWbRSnK8v6A8dNQJJOF
- BodVCuRXZaMH1fI2BQYy2F+c+lTx+AfyvjH5b76bYpUkhD8RTWfOQ8BayFAQF1HwTJ/qKueZCBqex
- db/4sHwMnBzIetYPW+WmNPK7p+bb8Mhw/8BnDCrFy8gvnUSOo0fH766jWILWLPu5KNfc=;
+ bh=/OYE8Kh5kREshesgyJBW+FlyuEi8kJEkZ/cCPrfQ51Y=; b=F2yDDUtzECEm0KF7oJkzK4qVh4
+ FYFhyHo0veTtp15lRYghXgDZaKe8YNCSlzLA8odKDYHz0QGb9SyWeNcPd5/DlQadus8K3oslcyTbQ
+ fN3Hay69L8jUA7p1Azsf/eAaHNkKdfJnyXM3c/X4TZR6DJfJmdwxR4xI3Kd2Ewj5jcbU=;
 Received: from shards.monkeyblade.net ([23.128.96.9])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jz6Pv-001odF-4v; Fri, 24 Jul 2020 22:43:54 +0000
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ id 1jzbN1-002wOG-9P; Sun, 26 Jul 2020 07:46:58 +0000
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::460])
  (using TLSv1 with cipher AES256-SHA (256/256 bits))
  (Client did not present a certificate)
  (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id 7C0081274F734;
- Fri, 24 Jul 2020 15:26:58 -0700 (PDT)
-Date: Fri, 24 Jul 2020 15:43:42 -0700 (PDT)
-Message-Id: <20200724.154342.1433271593505001306.davem@davemloft.net>
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 9C3271277D61E;
+ Sun, 26 Jul 2020 00:30:02 -0700 (PDT)
+Date: Sun, 26 Jul 2020 00:46:44 -0700 (PDT)
+Message-Id: <20200726.004644.71243023033363639.davem@davemloft.net>
 To: hch@lst.de
 From: David Miller <davem@davemloft.net>
-In-Reply-To: <20200723060908.50081-1-hch@lst.de>
+In-Reply-To: <20200726070311.GA16687@lst.de>
 References: <20200723060908.50081-1-hch@lst.de>
+ <20200724.154342.1433271593505001306.davem@davemloft.net>
+ <20200726070311.GA16687@lst.de>
 X-Mailer: Mew version 6.8 on Emacs 26.3
 Mime-Version: 1.0
 X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
  (shards.monkeyblade.net [149.20.54.216]);
- Fri, 24 Jul 2020 15:26:59 -0700 (PDT)
+ Sun, 26 Jul 2020 00:30:03 -0700 (PDT)
 X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -63,8 +65,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jz6Pv-001odF-4v
-X-Mailman-Approved-At: Sat, 25 Jul 2020 19:18:51 +0000
+X-Headers-End: 1jzbN1-002wOG-9P
+X-Mailman-Approved-At: Sun, 26 Jul 2020 08:30:26 +0000
 Subject: Re: [Linux-decnet-user] get rid of the address_space override in
  setsockopt v2
 X-BeenThere: linux-decnet-user@lists.sourceforge.net
@@ -95,36 +97,21 @@ Content-Transfer-Encoding: 7bit
 Errors-To: linux-decnet-user-bounces@lists.sourceforge.net
 
 From: Christoph Hellwig <hch@lst.de>
-Date: Thu, 23 Jul 2020 08:08:42 +0200
+Date: Sun, 26 Jul 2020 09:03:11 +0200
 
-> setsockopt is the last place in architecture-independ code that still
-> uses set_fs to force the uaccess routines to operate on kernel pointers.
+> On Fri, Jul 24, 2020 at 03:43:42PM -0700, David Miller wrote:
+>> > Changes since v1:
+>> >  - check that users don't pass in kernel addresses
+>> >  - more bpfilter cleanups
+>> >  - cosmetic mptcp tweak
+>> 
+>> Series applied to net-next, I'm build testing and will push this out when
+>> that is done.
 > 
-> This series adds a new sockptr_t type that can contained either a kernel
-> or user pointer, and which has accessors that do the right thing, and
-> then uses it for setsockopt, starting by refactoring some low-level
-> helpers and moving them over to it before finally doing the main
-> setsockopt method.
-> 
-> Note that apparently the eBPF selftests do not even cover this path, so
-> the series has been tested with a testing patch that always copies the
-> data first and passes a kernel pointer.  This is something that works for
-> most common sockopts (and is something that the ePBF support relies on),
-> but unfortunately in various corner cases we either don't use the passed
-> in length, or in one case actually copy data back from setsockopt, or in
-> case of bpfilter straight out do not work with kernel pointers at all.
-> 
-> Against net-next/master.
-> 
-> Changes since v1:
->  - check that users don't pass in kernel addresses
->  - more bpfilter cleanups
->  - cosmetic mptcp tweak
+> The buildbot found one warning with the isdn debug code after a few
+> days, here is what I think is the best fix:
 
-Series applied to net-next, I'm build testing and will push this out when
-that is done.
-
-Thanks.
+I already fixed this in net-next.
 
 
 _______________________________________________
